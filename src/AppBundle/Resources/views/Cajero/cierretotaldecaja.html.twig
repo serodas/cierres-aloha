@@ -1,0 +1,116 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Cierre Total{% endblock %}
+{% block content %}
+  <div class="row">
+    <form name="" id="cierreCaja" action="{{path("cierreparcialdecaja")}}" method="POST" role="form" >
+      <div class="col-lg-6">
+        {% for message in app.session.flashbag().get('status') %}
+          <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+          <h4>Cierre de caja</h4>
+          <div class='form-group'>
+              <label for="fecha" class="required">Fecha</label>
+              <input type="text" id="fecha" name="fecha" required="required" class="js-datepicker form-control">
+          </div>
+          <div class='form-group'>
+              <label for="terminal" class="required">Terminal</label>
+              <select id="terminal" name="terminal" required="required" class="form-control">
+                <option value=""> Seleccione...</option>
+                {% for terminal in terminales|sort((a, b) => a.name <=> b.name) %}
+                  <option value="{{ terminal.id }}">{{ terminal.name }}</option>
+                {% endfor %}
+              </select>
+          </div>
+          <div class='form-group'>
+              <label for="valorEfectivo" class="required">Valor Entregado en Efectivo</label>
+              <input type="number" id="valorEfectivo" name="valorEfectivo" required="required" class="form-control" />
+          </div>
+      </div>
+      <div class="col-lg-12">
+        <div class='form-group'>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" style="width:190px;">Forma de Pago</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col" >Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                    <select id="tdebito" name="tarjetas[0][formapago]" required="required" class="form-control">
+                      <option value="3">Tarjeta Debito</option>
+                    </select>
+                </th>
+                <td>
+                  <input type="number" id="cantidadTDebito" name="tarjetas[0][cantidad]" value="0" required="required" class="form-control" />
+                </td>
+                <td>
+                  <input type="number" id="totalTDebito" name="tarjetas[0][total]" value="0" required="required" class="form-control" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                    <select id="tcredito" name="tarjetas[1][formapago]" required="required" class="form-control">
+                      <option value="4">Tarjeta Credito</option>
+                    </select>
+                </th>
+                <td>
+                  <input type="number" id="cantidadTCredito" name="tarjetas[1][cantidad]" value="0" required="required" class="form-control" />
+                </td>
+                <td>
+                  <input type="number" id="totalTCredito" name="tarjetas[1][total]" value="0" required="required" class="form-control" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <select id="comfaplus" name="tarjetas[2][formapago]" required="required" class="form-control">
+                    <option value="16">Tarjeta ComfaPlus</option>
+                  </select>
+                </th>
+                <td>
+                  <input type="number" id="cantidadTComfaPlus" name="tarjetas[2][cantidad]" value="0" required="required" class="form-control" />
+                </td>
+                <td>
+                  <input type="number" id="totalTComfaPlus" name="tarjetas[2][total]" value="0" required="required" class="form-control" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <select id="subsidioespecie" name="tarjetas[3][formapago]" required="required" class="form-control" />
+                    <option value="18">Subsidio Especie</option>
+                  </select>
+                </th>
+                <td>
+                  <input type="number" id="cantidadSubsidioEspecie" name="tarjetas[3][cantidad]" value="0" required="required" class="form-control" />
+                </td>
+                <td>
+                  <input type="number" id="totalSubsidioEspecie" name="tarjetas[3][total]" value="0" required="required" class="form-control" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <select id="creditonomina" name="tarjetas[4][formapago]" required="required" class="form-control" />
+                    <option value="5">Crédito Nómina</option>
+                  </select>
+                </th>
+                <td>
+                  <input type="number" id="cantidadCreditoNomina" name="tarjetas[4][cantidad]" value="0" required="required" class="form-control" />
+                </td>
+                <td>
+                  <input type="number" id="totalCreditoNomina" name="tarjetas[4][total]" value="0" required="required" class="form-control" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <input type="submit" id="btonCierreCaja" name="btonCierreCaja" class="form-submit btn btn-primary" >
+      </div>
+    </form>
+  </div>    
+{% endblock %}
+

@@ -1,0 +1,53 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %}  Cierre total {% endblock %}
+{% block content %}
+    <div class="col-lg-4">
+        {% for message in app.session.flashbag().get('status') %}
+          <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="clearfix"></div>
+    <div class="container-fluid">        
+        <div class="count">
+            <span class="label label-primary">
+                Entradas en total: {{ pagination.getTotalItemCount }}
+            </span>
+        </div>
+            <br/>
+            {% if pagination.getTotalItemCount > 0 %}
+                <div class="table-responsive"> 
+                    <table id="punto" class="table table-bordered">
+                        <thead>
+                        <tr> 
+                            <th>{{ knp_pagination_sortable(pagination, 'Id', 'c.id') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'c.fecha') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Punto', 'p.descripcion') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Cajero', 'c.usuario') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Efectivo', 'c.ventregado') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Motivo', 'm.descripcion') }}</th>
+                            <th> <a class="sortable" href="#"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for caja in pagination %}
+                        <tr {% if loop.index is odd %}class="color"{% endif %} >
+                            <td>{{ caja.id}}</td>
+                            <td>{{ caja.fecha }}</td>
+                            <td>{{ caja.descripcion }}</td>
+                            <td>{{ caja.usuario}}</td>
+                            <td>{{ caja.ventregado }}</td>
+                            <td>{{ caja.motivo }}</td> 
+                            <td> <a href="{{ path( "tirilla", {"id":caja.id} ) }}" class="tirilla">Imprimir</a> </td>       
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>    
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+            {% endif %} 
+    </div>
+{% endblock %}
+

@@ -1,0 +1,33 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Parque Recreacional{% endblock %}
+{% block content %}
+    <div class="col-lg-4">
+        <h2>Reporte de Efectivo por Cajero</h2>
+        <div class="reporteEfectivo" id='mensaje'></div> 
+        <div class="clearfix"></div>
+        <form name="efectivas" id="efectivas" action="" role="form">
+            <div class='form-group'>
+                <label for="fecha" class="required">Fecha</label>
+                <input type="text" id="fecha" name="fecha" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <label for="Centro" class="required">Centro de Atención</label>
+                <select id="centro_atencion" name="centro_atencion" required="required" class="form-control">
+                    <option value="1">Parque Recreacional</option>
+                    <option value="2">Cafeteria Centro</option>
+                    <option value="3">Cafeteria Dosquebradas</option>
+                </select>
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-efectivas" name="btn-efectivas" class="form-submit btn btn-primary btn-sm">
+                    <i id="download-icon" class="fa fa-download" aria-hidden="true"></i><i id="time-icon" class="far fa-clock hidden fa-spin"></i>Generar
+                </button>
+                <button type="button" id="btn-actualizar" name="btn-actualizar" class="form-submit btn btn-danger btn-sm">
+                    <i id="download-icon" class="fa fa-download" aria-hidden="true"></i><i id="time-icon" class="far fa-clock hidden fa-spin"></i>Actualizar
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

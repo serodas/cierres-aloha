@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+ <title>{% block title %}Bienvenido{% endblock %}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  {% stylesheets
+  'bundles/app/lib/bootstrap/dist/css/bootstrap.min.css'
+  'bundles/app/lib/font-awesome/css/font-awesome.min.css'
+  'bundles/app/lib/Ionicons/css/ionicons.min.css'
+  'bundles/app/lib/AdminLTE/dist/css/AdminLTE.min.css'
+  'bundles/app/lib/AdminLTE/dist/css/skins/skin-blue.min.css'
+  'bundles/app/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'
+  'bundles/app/lib/datatables.net-bs/css/dataTables.bootstrap.min.css'
+  'bundles/app/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css'
+  'bundles/app/lib/datatables.net-buttons-dt/css/buttons.dataTables.min.css'
+  'bundles/app/css/*'
+  filter='uglifycss' filter='cssrewrite' output='css/index.css'
+  %}
+  <!-- filter='uglifycss' filter='cssrewrite' output='css/index.css' -->
+  <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition {% block clasesbody %}skin-blue sidebar-mini{% endblock %}">
+{% block body %}{% endblock %}
+{% javascripts
+'@AppBundle/Resources/public/lib/jquery/dist/jquery.min.js'
+'@AppBundle/Resources/public/lib/bootstrap/dist/js/bootstrap.min.js'
+'@AppBundle/Resources/public/lib/AdminLTE/dist/js/adminlte.min.js'
+'@AppBundle/Resources/public/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'
+'@AppBundle/Resources/public/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
+'@AppBundle/Resources/public/lib/datatables.net/js/jquery.dataTables.min.js'
+'@AppBundle/Resources/public/lib/datatables.net-bs/js/dataTables.bootstrap.min.js'
+'@AppBundle/Resources/public/lib/datatables.net-responsive/js/dataTables.responsive.min.js'
+'@AppBundle/Resources/public/lib/datatables.net-buttons/js/dataTables.buttons.min.js'
+'@AppBundle/Resources/public/lib/datatables.net-buttons/js/buttons.html5.min.js'
+'@AppBundle/Resources/public/lib/jszip/dist/jszip.min.js'            
+'@AppBundle/Resources/public/js/*'
+filter='uglifyjs2' output='js/index.js'
+ %}
+<!-- filter='uglifyjs2' output='js/index.js' --> 
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %} 
+</body>
+</html>

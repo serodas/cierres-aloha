@@ -1,0 +1,23 @@
+# This file is auto-generated during the composer install
+parameters:
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    database_sql_host: 192.168.6.230
+    database_sql_port: 1433
+    database_sql_name: null
+    database_sql_user: interfase_user
+    database_sql_password: 1nt3rf4s3us3r
+    database_mysql_host: phptest.comfamiliar.com
+    database_mysql_port: null
+    database_mysql_name: cierre_aloha
+    database_mysql_user: cierredev
+    database_mysql_password: KcppE3f8UJhLf75a
+    database_db2_host: null
+    database_db2_port: null
+    database_db2_name: null
+    database_db2_odbc: PROD
+    database_db2_user: SRODAS
+    database_db2_password: samir2016

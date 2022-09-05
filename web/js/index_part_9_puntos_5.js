@@ -1,0 +1,1 @@
+(function(){$(document).ready(function(){$(".puntos").on("click",function(){alert("hola")})})})();

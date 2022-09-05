@@ -1,0 +1,32 @@
+<!-- Modal para el boton autorizar -->
+<div class="modal fade" id="modalAutorizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Autorizar Denominaciones</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id='frmAutorizar' class="autorizar" action="">
+                     <div class='form-group' >
+                       <p>¿Seguro de autorizar modificar las Denominaciones ?</p>
+                    </div>
+                     <div class='form-group' style="display:none;">
+                        <label for="idAuth" class="required">Id</label>
+                        <input type="text" id="idAuth" name="idAuth" required="required" class="form-control" readOnly >
+                    </div>
+                    <div class='form-group'>
+                        <label for="observacion" class="required">Observacion</label>
+                        <textarea class="form-control" id="observacion" name="observacion" ></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="limpiar btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" id="si" class="btn btn-primary">Si</button>
+            </div>
+        </div>
+    </div>
+</div>

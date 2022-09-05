@@ -1,0 +1,23 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %}  Consulta de cajas {% endblock %}
+{% block content %}
+        <div class="cajeros col-sm-4" id='mensaje'></div>
+        <div class='clearfix'></div>
+            <table id="cajeros" class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th>Id</th>
+                        <th>Fecha</th>
+                        <th>Punto</th>
+                        <th>Cajero</th>
+                        <th>Efectivo</th>
+                        <th>Motivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>            
+    {% include 'AppBundle:Cajero:modalEditar.html.twig' %}
+
+{% endblock %}
+

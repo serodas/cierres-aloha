@@ -1,0 +1,153 @@
+{% extends "base.html.twig" %} {% block body %}
+<div class="wrapper">
+    <!-- Main Header -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="{{ url('homepage') }}" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>F</b>A</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">Facturacion&nbsp;Aloha</span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">{{app.user.nombre}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a href="{{ url('logout') }}" class="btn btn-default btn-flat">Salir</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        {# <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>#}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="header">Menú principal</li>
+                {% if is_granted('ROLE_CAJEROALOHA')%}
+                <li><a href="{{path("cierreparcialdecaja")}}"><i class="fa fa-cog"></i> <span>Cierre Parcial de Caja</span></a></li>
+                <li><a href="{{path("consultadecajas")}}"><i class="fa fa-cog"></i> <span>Consulta Cajas</span></a></li>
+                {% endif %}
+                {% if is_granted('ROLE_FISCALALOHA')%}
+                <li class="treeview active">
+                    <a href="#"><i class="fa fa-cog"></i> <span>Operaciones</span></a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{path("consultacuentas")}}"><span>Consulta Cuentas</span></a></li>
+                        <li><a href="{{path("consultadevouchers")}}"><span>Gestion Subsidio Especie</span></a></li>
+                    </ul>
+		        </li>
+                <li class="treeview active">
+                    <a href="#"><i class="fa fa-cog"></i> <span>Tesoreria</span></a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{path("frmreporte")}}"><span>Reporte Efectivo</span></a></li>
+                        <li><a href="{{path("frmreporte-noefectivas")}}"><span>Reporte Tarjetas</span></a></li>
+                        <li><a href="{{path("cierrescondiferencias")}}"><span>Descuadres Cajeros</span></a></li>
+                        <li><a href="{{path("formreportesubsidioenespecie")}}"><span>Subsidio Especie</span></a></li>
+                    </ul>
+		        </li>
+                {% endif %}
+                {% if is_granted('ROLE_ANALISTAINVENTARIO')%}
+                <li class="treeview active">
+                    <a href="#"><i class="fa fa-cog"></i> <span>Restaurantes</span></a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{path("productosvendidos")}}"><span>Pmix</span></a></li>
+                        <li><a href="{{path("productosvendidosconsolidado")}}"><span>Consolidado</span></a></li>
+                        <li><a href="{{path("interfaceinventario")}}"><span>Interface Inventario</span></a></li>
+                        <li><a href="{{path("interfaceproductos")}}"><span>Interface Productos</span></a></li>
+                        <li><a href="{{path("formreporte-reservas")}}"><span>Reporte Reservas</span></a></li>
+                        <li><a href="{{path("formreporte-micomfamiliar")}}"><span>Reporte Micomfamiliar</span></a></li>
+                    </ul>
+		        </li>
+                {% endif %}
+                {% if is_granted('ROLE_AUDITOR')%}
+                <li class="treeview active">
+                    <a href="#"><i class="fa fa-cog"></i> <span>Consulta</span></a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{path("consultacuentas")}}"><span>Cuentas Aloha</span></a></li>
+                        <li><a href="{{path("productosvendidos")}}"><span>Reporte Pmix</span></a></li>
+                        <li><a href="{{path("cierrescondiferencias")}}"><span>Descuadres Cajeros</span></a></li>
+                        <li><a href="{{path("productosvendidosconsolidado")}}"><span>Consolidado Productos</span></a></li>
+                        <li><a href="{{path("reembolsos")}}"><span>Reembolsos</span></a></li>
+                        <li><a href="{{path("formreportesubsidioenespecie")}}"><span>Subsidio Especie</span></a></li>
+                    </ul>
+		        </li>
+                {% endif %}
+                {% if is_granted('ROLE_TESOREROALOHA')%}
+                    <li class="treeview active">
+                        <a href="#"><i class="fa fa-cog"></i> <span>Tesoreria</span></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{path("autorizardenominaciones")}}"></i> <span>Autorizar Denominaciones</span></a></li>
+                            <li><a href="{{path("consultacuentas")}}"><span>Consulta Cuentas</span></a></li>
+                            <li><a href="{{path("modificarcuentas")}}"><span>Modificar Cuentas</span></a></li>
+                            <li><a href="{{path("frmreporte")}}"><span>Reporte Efectivo</span></a></li>
+                            <li><a href="{{path("frmreporte-noefectivas")}}"><span>Reporte Tarjetas</span></a></li>
+                            <li><a href="{{path("cierrescondiferencias")}}"><span>Descuadres Cajeros</span></a></li>
+                            <li><a href="{{path("formreportesubsidioenespecie")}}"><span>Subsidio Especie</span></a></li>
+                            <li><a href="{{path("consultadevouchers")}}"><span>Gestion Subsidio Especie</span></a></li>
+                            <li><a href="{{path("reembolsos")}}"><span>Reembolsos</span></a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section class="content">
+            {% block content %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    Felicitaciones !! {{app.user.nombre}} eres Administrador
+                {% endif %}    
+            {% endblock %}
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        <strong>Facturacion Aloha&copy; {{ "now"|date("Y") }} Comfamiliar Risaralda</strong>. Todos los derechos reservados
+    </footer>
+</div>
+{% endblock %}

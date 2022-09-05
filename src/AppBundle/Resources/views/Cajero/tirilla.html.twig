@@ -1,0 +1,105 @@
+{% extends "base.html.twig" %}
+{% block title %} Cierre Parcial{% endblock %}
+{% block body %}
+<page>
+    <div id="divVoucher">
+        <table>
+            <tbody>
+                <tr>
+                    <td align="center" colspan="2">
+                        <b>
+                          Cierre Parcial
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2">
+                        COMFAMILIAR RISARALDA
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Fecha:
+                    </td>
+                    <td>
+                        {{ tirilla.fecha}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       Nombre:
+                    </td>
+                    <td>
+                       {{tirilla.usuario}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Punto:
+                    </td>
+                    <td>
+                      {{tirilla.punto}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Efectivo:
+                    </td>
+                    <td>
+                       {{tirilla.ventregado}}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Cajero:
+                    </td>
+                    <td>
+                       ___________________________________________
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Recibido:
+                    </td>
+                    <td>
+                        ___________________________________________
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">En caso de faltantes autorizo me sea descontado dicho valor por nomina</td>
+                <tr>
+                    <td colspan="2">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</page>
+{% endblock %}

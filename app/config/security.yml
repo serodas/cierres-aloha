@@ -1,0 +1,32 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    role_hierarchy:
+        ROLE_ADMIN : [ROLE_CAJEROALOHA,ROLE_ANALISTAINVENTARIO,ROLE_TESOREROALOHA]
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/cajero, roles: [ ROLE_CAJEROALOHA,ROLE_FISCALALOHA,ROLE_AUDITOR,ROLE_TESOREROALOHA ] }
+        - { path: ^/venta, roles: [  ROLE_FISCALALOHA, ROLE_ANALISTAINVENTARIO,ROLE_AUDITOR,ROLE_TESOREROALOHA] }
+        - { path: ^/reporte, roles: [  ROLE_FISCALALOHA, ROLE_ANALISTAINVENTARIO,ROLE_AUDITOR,ROLE_TESOREROALOHA] }
+        - { path: ^/_wdt, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USUARIO}
+     
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            sec: true
+            pattern:  ^/*
+            anonymous:  ~
+            form_login:
+                login_path: login
+                check_path: login_check
+                default_target_path: homepage
+            logout:
+                path: logout
+                target: login

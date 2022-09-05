@@ -1,0 +1,34 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Modificar Cuentas{% endblock %}
+{% block content %}
+       <form name="modificarfacturas" id="modificarfacturas" action="" method="" class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="fecha" class="required">Fecha</label>
+                <input type="text" id="date" name="date" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-modificarcuentas" name="btn-modificarcuentas" class="form-submit btn btn-primary btn-sm">Buscar</button>
+            </div>
+        </form> 
+    <div class="cuentas col-sm-4" id='mensaje'></div>       
+    <div class="clearfix"></div>
+    </br>
+        <div id="datatable-modificarcuentas">
+            <table id="modificarcuentas" class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th> Id </th>
+                        <th> Punto</th>
+                        <th> Fecha </th>
+                        <th> Empleado </th>                   
+                        <th> Check </th>
+                        <th> Forma Pago </th>
+                        <th> Valor </th>
+                        <th> Acciones </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>  
+    {% include 'AppBundle:Venta:modalEditar.html.twig' %}     
+{% endblock %}

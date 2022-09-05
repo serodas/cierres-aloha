@@ -1,0 +1,192 @@
+imports:
+    - { resource: ambiente.yml }    
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@SeguridadBundle/Resources/config/security.yml" }    
+    - { resource: "@AppBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Doctrine Configuration
+# doctrine:
+#     dbal:
+#         driver:   '%database_driver%'
+#         host:     "%database_host%"
+#         port:     "%database_port%"
+#         dbname:   "%database_name%"
+#         user:     "%database_user%"
+#         password: "%database_password%"
+#         charset:  UTF8
+#         #options:
+#             #odbc:     "%database_odbc%"         
+#         # if using pdo_sqlite as your database driver:
+#         #   1. add the path in parameters.yml
+#         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+#         #   2. Uncomment database_path in parameters.yml.dist
+#         #   3. Uncomment next line:
+#         #     path:     "%database_path%"
+
+#     orm:
+#         auto_generate_proxy_classes: "%kernel.debug%"
+#         naming_strategy: doctrine.orm.naming_strategy.underscore
+#         auto_mapping: true
+
+doctrine:
+    dbal:
+        default_connection: sql
+        connections:
+            sql:
+                driver: pdo_sqlsrv
+                host: '%database_sql_host%'
+                port: '%database_sql_port%'
+                dbname: '%database_sql_name%'
+                user: '%database_sql_user%'
+                password: '%database_sql_password%'
+                charset: UTF8
+
+            mysql:
+                driver: pdo_mysql
+                host: '%database_mysql_host%'
+                port: '%database_mysql_port%'
+                dbname: '%database_mysql_name%'
+                user: '%database_mysql_user%'
+                password: '%database_mysql_password%'
+                charset: UTF8
+                
+            db2:
+                driver: pdo_ibm_i
+                host: '%database_db2_host%'
+                port: '%database_db2_port%'
+                dbname: '%database_db2_name%'
+                user: '%database_db2_user%'
+                password: '%database_db2_password%'
+                charset: UTF8
+                options:
+                    odbc:   '%database_db2_odbc%'    
+                
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: true
+        #naming_strategy: doctrine.orm.naming_strategy.underscore
+        #auto_mapping: true
+        default_entity_manager: sql
+        entity_managers:
+            sql:
+                connection: sql
+                mappings:
+                    AppBundle: ~
+
+            mysql:
+                connection: mysql
+                mappings:
+                    AppBundle: ~
+
+            db2:
+                connection: db2
+                mappings:
+                    AppBundle: ~        
+                            
+
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    node: /usr/bin/nodejs
+    filters:
+        cssrewrite: ~
+        uglifyjs2:
+            bin: '%kernel.project_dir%/app/Resources/node_modules/.bin/uglifyjs'
+        uglifycss:
+            bin: '%kernel.project_dir%/app/Resources/node_modules/.bin/uglifycss'
+
+fos_rest:
+    format_listener:
+        enabled: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    versioning:
+        enabled: true
+        default_version: ~
+        resolvers:
+            query:
+                enabled: true
+                parameter_name: version
+            custom_header: true
+
+knp_paginator:
+    page_range: 10                     # rango por defecto de paginas en los controles del paginador
+    default_options:
+        page_name: page                # nombre del parámetro de la URL para la página
+        sort_field_name: sort          # nombre del parámetro de la URL para la ordenación
+        sort_direction_name: direction # nombre del parámetro de la URL para la dirección(ASC o DESC)
+        distinct: true                 # Garantizar resultados distintos
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig  # plantilla controles
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # plantilla links ordenación
+                               
+# fos_rest:
+#     serializer:
+#         serialize_null: true
+#     body_listener:
+#         array_normalizer:
+#             service: null
+#             forms: false
+#     body_converter:
+#         enabled: true
+#     param_fetcher_listener: force
+#     routing_loader:
+#         default_format: json
+#     view:
+#         view_response_listener: force
+#         formats:
+#             json: true
+#             xml: true
+#         templating_formats:
+#             html: true

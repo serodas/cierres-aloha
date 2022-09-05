@@ -1,0 +1,36 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Reembolsos{% endblock %}
+{% block content %}
+       <form name="Frmreembolsos" id="Frmreembolsos" action="" method="" class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="fecha" class="required">Desde</label>
+                <input type="text" id="desde" name="desde" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <label for="fecha" class="required">Hasta</label>
+                <input type="text" id="hasta" name="hasta" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-reembolsos" name="btn-reembolsos" class="form-submit btn btn-primary btn-sm">Buscar</button>
+            </div>
+        </form>    
+    <div class="clearfix"></div>
+    </br>
+        <div id="datatable-reembolsos">
+            <table id="reembolsos" class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th>Fecha</th>
+                        <th>Cajero</th>                   
+                        <th>Punto</th>
+                        <th>Check</th>
+                        <th>Item</th>
+                        <th>Descripcion</th>
+                        <th>Valor </th>
+                        <th>Fecha Sistema </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>   
+{% endblock %}

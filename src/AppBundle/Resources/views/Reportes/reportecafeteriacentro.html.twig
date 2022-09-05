@@ -1,0 +1,18 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Cafeteria Centro{% endblock %}
+{% block content %}
+    <div class="col-lg-4">
+       <form name="cafeteriacentro" id="cafeteriacentro" action="" class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="fecha" class="required">Fecha</label>
+                <input type="text" id="fecha" name="fecha" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-cafeteriacentro" name="btn-cafeteriacentro" class="form-submit btn btn-primary btn-sm">Generar</button>
+            </div>
+        </form>
+        </br>
+    </div>
+
+{% endblock %}

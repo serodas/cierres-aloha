@@ -1,0 +1,46 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Cierres con Diferencia{% endblock %}
+{% block content %}
+       <form name="Frmcierrescondiferencias" id="Frmcierrescondiferencias" action="" method="" class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="fecha" class="required">Desde</label>
+                <input type="text" id="desde" name="desde" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <label for="fecha" class="required">Hasta</label>
+                <input type="text" id="hasta" name="hasta" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <label for="tipo" class="required">Tipo</label>
+                <select name="tipo" id="tipo" class="form-control">
+                    <option value='0'>---</option>
+                    <option value='1'>Faltantes</option>
+                    <option value='2'>Sobrantes</option>
+                </select>
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-cierrescondiferencia" name="btn-cierrescondiferencia" class="form-submit btn btn-primary btn-sm">Buscar</button>
+            </div>
+        </form>    
+    <div class="clearfix"></div>
+    </br>
+        <div id="datatable-cierrescondiferencia">
+            <table id="cierrescondiferencia" class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th>Fecha</th>                   
+                        <th>Caja</th>
+                        <th>Nombre Usuario</th>
+                        <th>Documento</th>
+                        <th>Diferencia</th>
+                        <th>Motivo</th>
+                        <th>Observacion</th>
+                        <th>Fecha Creacion</th>
+                        <th>Fecha Edicion</th>
+                        <th>Usuario Edicion</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>   
+{% endblock %}

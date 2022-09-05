@@ -1,0 +1,11 @@
+parameters:
+    mailer_port: 587
+    mailer_encryption: ssl
+    llave_privada: 'c1d2a3'
+    # mailer_name: "Aportes API Comfamiliar"
+    database_driver: pdo_mysql
+    #database_odbc: PROD
+     
+    servicio: 173 
+    llave_desarrollo: sDgxtX8x0oVS84Dt79202927upRkG0B4 
+    refresh_user: false

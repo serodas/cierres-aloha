@@ -1,0 +1,36 @@
+{
+  "name": "Proyecto base",
+  "authors": [
+    "Developer <developer@comfamiliar.com>"
+  ],
+  "description": "Proyecto base Symfony 3.x",
+  "main": "",
+  "license": "proprietary",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/AppBundle/Resources/public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#^2.4.*",
+    "font-awesome": "^4.7.0",
+    "Ionicons": "ionicons#^2.0.1",
+    "jquery": "^3.2.1",
+    "datatables.net-responsive": "^2.1.1",
+    "datatables.net": "^1.10.15",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net-responsive-bs": "^2.1.1",
+    "bootstrap-daterangepicker": "^2.1.25",
+    "moment": "^2.18.1",
+    "x-editable": "^1.5.1",
+    "bootstrap-toggle": "^2.2.2",
+    "select2": "^4.0.3",
+    "datatables.net-responsive-dt": "^2.2.0",
+    "jszip": "^3.1.5",
+    "datatables.net-buttons-dt": "^1.4.2"
+  }
+}

@@ -1,0 +1,43 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Entradas Micomfamiliar{% endblock %}
+{% block content %}
+    <div class="col-lg-6">
+        <h2 style="font-size:14px;">BUSCAR ENTRADA ADQUIRIDA DESDE MICOMFAMILIAR POR NUMERO DE DOCUMENTO DEL USUARIO</h2>
+        <div class="clearfix"></div>
+       <form name="form-micomfamiliar" id="form-micomfamiliar" action=""  class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="documento" class="required">Documento</label>
+                <input type="number" id="documento" name="documento" required="required" class="form-control">
+                <div class="clearfix">
+                    <small>Por favor digitar el número de documento de identificación del usuario,SIN PUNTOS, SIN COMAS y SIN ESPACIOS.</small>
+                </div>
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-micomfamiliar" name="btn-micomfamiliar" class="form-submit btn btn-primary btn-sm">
+                     <i id="search-icon" class="fa fa-search" aria-hidden="true"></i><i id="time-icon" class="far fa-clock hidden fa-spin"></i>Buscar
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+    <div id="mensaje" class="alert alert-danger oculto col-lg-6" style="margin-top:10px;"></div>
+    <div id="table-micomfamiliar">
+        <table id="entradas-micomfamiliar" class="table table-bordered oculto entradas-micomfamiliar">
+            <thead>
+                <tr> 
+                    <th>Consecutivo</th>                   
+                    <th>Disponible</th>
+                    <th>Carros</th>
+                    <th>Motos</th>
+                    <th>Fecha Visita</th>
+                    <th>Fecha Factura</th>
+                    <th>Factura</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div> 
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Interface Productos{% endblock %}
+{% block content %}
+    <div class="col-lg-4">
+       <form name="interfaceProductos" id="interfaceProductos" action="" class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="username">Sincronizar Productos JDE - Chaplin</label>
+                {# <input type="text" id="fecha" name="fecha" required="required" class="js-datepicker-inventario form-control"> #}
+                <input type="hidden" id="username" name="username" value="{{app.user.username}}">
+            </div>
+            <div class="clearfix"></div>
+            <div class='form-group'>
+                <button type="button" id="btn-interfaceProductos" name="btn-interfaceProductos" class="form-submit btn btn-primary btn-sm">
+                    <i id="download-icon" class="fa fa-download" aria-hidden="true"></i><i id="time-icon" class="far fa-clock hidden fa-spin"></i>Generar
+                </button>
+            </div>
+        </form>
+        </br>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-sm-4" id='mensaje'></div>
+    <div class="table-responsive-sm" id="divtabledetalle" ></div>     
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'AppBundle:Principal:body.html.twig' %}
+
+{% block title %} Reporte Productos{% endblock %}
+{% block content %}
+       <form name="productos" id="productos" action="" method="post" class="form-inline" role="form">
+            <div class='form-group'>
+                <label for="fecha" class="required">Desde</label>
+                <input type="text" id="desde" name="desde" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <label for="fecha" class="required">Hasta</label>
+                <input type="text" id="hasta" name="hasta" required="required" class="js-datepicker form-control">
+            </div>
+            <div class='form-group'>
+                <button type="button" id="btn-consolidado" name="btn-consolidado" class="form-submit btn btn-primary btn-sm">
+                <i id="download-icon" class="fa fa-search" aria-hidden="true"></i><i id="time-icon" class="far fa-clock hidden fa-spin"></i> Buscar</button>
+            </div>
+        </form>    
+    <div class="clearfix"></div>
+    </br>   
+<div class="container-fluid">        
+        <div class="table-responsive">
+            <table id="consolidado" class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th>FECHA</th>
+                        <th>PUNTO</th>
+                        <th>PRODUCTO</th>
+                        <th>DESCRIPCION</th>
+                        <th>CANTIDAD</th>
+                        <th>TOTAL</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>    
+</div> 
+<!-- Modal -->
+<div id="modalDetalle" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="divtabledetalle" class="table-responsive-sm"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>   
+{% endblock %}
