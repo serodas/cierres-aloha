@@ -210,26 +210,30 @@ class CierreRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->getEntityManager()->getConnection();
 
         if($centroAtencion == '1'){
-            $query = "SELECT A.EMPLOYEE,(C.FIRSTNAME + ' ' + C.LASTNAME) AS CAJERO,A.TYPEID,B.ID AS TERMINAL,B.Name,E.descripcion,SUM(A.amount) AS total FROM dbInventario.dbo.tblGndSale AS A INNER JOIN dbInventario.dbo.tblTrm B ON ( B.Id = round(A.[CHECK]*0.0001,0)) INNER JOIN dbInventario.dbo.tblEmpleados  C ON (C.Id = A.EMPLOYEE) INNER JOIN dbInventario.dbo.tblParametrizacionContable  E ON (E.formaPagoId = A.TypeId) WHERE A.dob= :fecha AND A.TYPE=4 AND B.ID not in(:cafeteriaCentro, :cafeteriaDosquebradas) AND A.TYPEID NOT IN (1) GROUP BY A.EMPLOYEE,C.FIRSTNAME,C.LASTNAME,B.Name,E.descripcion,A.TYPEID,E.FORMAPAGOID,B.ID ORDER BY C.FIRSTNAME";
+            $query = "SELECT A.EMPLOYEE,(C.FIRSTNAME + ' ' + C.LASTNAME) AS CAJERO,A.TYPEID,B.ID AS TERMINAL,B.Name,E.descripcion,SUM(A.amount) AS total FROM dbInventario.dbo.tblGndSale AS A INNER JOIN dbInventario.dbo.tblTrm B ON ( B.Id = round(A.[CHECK]*0.0001,0)) INNER JOIN dbInventario.dbo.tblEmpleados  C ON (C.Id = A.EMPLOYEE) INNER JOIN dbInventario.dbo.tblParametrizacionContable  E ON (E.formaPagoId = A.TypeId) WHERE A.dob= :fecha AND A.TYPE=4 AND B.ID not in(:cafeteriaCentro, :cafeteriaDosquebradas, :cafeteriaCentro2, :cafeteriaDosquebradas2) AND A.TYPEID NOT IN (1) GROUP BY A.EMPLOYEE,C.FIRSTNAME,C.LASTNAME,B.Name,E.descripcion,A.TYPEID,E.FORMAPAGOID,B.ID ORDER BY C.FIRSTNAME";
             
             $params = array(
                 "fecha"=>$fecha,
                 "cafeteriaCentro"=> Ambiente::CAFETERIACENTRO,
-                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS
+                "cafeteriaCentro2"=> Ambiente::CAFETERIACENTRO_II,
+                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS,
+                "cafeteriaDosquebradas2"=> Ambiente::CAFETERIADOSQUEBRADAS_II
             );
         }elseif($centroAtencion == '2'){
-            $query = "SELECT A.EMPLOYEE,(C.FIRSTNAME + ' ' + C.LASTNAME) AS CAJERO,A.TYPEID,B.ID AS TERMINAL,B.Name,E.descripcion,SUM(A.amount) AS total FROM dbInventario.dbo.tblGndSale AS A INNER JOIN dbInventario.dbo.tblTrm B ON ( B.Id = round(A.[CHECK]*0.0001,0)) INNER JOIN dbInventario.dbo.tblEmpleados  C ON (C.Id = A.EMPLOYEE) INNER JOIN dbInventario.dbo.tblParametrizacionContable  E ON (E.formaPagoId = A.TypeId) WHERE A.dob= :fecha AND A.TYPE=4 AND B.ID = :cafeteriaCentro AND A.TYPEID NOT IN (1) GROUP BY A.EMPLOYEE,C.FIRSTNAME,C.LASTNAME,B.Name,E.descripcion,A.TYPEID,E.FORMAPAGOID,B.ID ORDER BY C.FIRSTNAME";
+            $query = "SELECT A.EMPLOYEE,(C.FIRSTNAME + ' ' + C.LASTNAME) AS CAJERO,A.TYPEID,B.ID AS TERMINAL,B.Name,E.descripcion,SUM(A.amount) AS total FROM dbInventario.dbo.tblGndSale AS A INNER JOIN dbInventario.dbo.tblTrm B ON ( B.Id = round(A.[CHECK]*0.0001,0)) INNER JOIN dbInventario.dbo.tblEmpleados  C ON (C.Id = A.EMPLOYEE) INNER JOIN dbInventario.dbo.tblParametrizacionContable  E ON (E.formaPagoId = A.TypeId) WHERE A.dob= :fecha AND A.TYPE=4 AND B.ID in(:cafeteriaCentro, :cafeteriaCentro2) AND A.TYPEID NOT IN (1) GROUP BY A.EMPLOYEE,C.FIRSTNAME,C.LASTNAME,B.Name,E.descripcion,A.TYPEID,E.FORMAPAGOID,B.ID ORDER BY C.FIRSTNAME";
             
             $params = array(
                 "fecha"=>$fecha,
-                "cafeteriaCentro"=> Ambiente::CAFETERIACENTRO
+                "cafeteriaCentro"=> Ambiente::CAFETERIACENTRO,
+                "cafeteriaCentro2"=> Ambiente::CAFETERIACENTRO_II
             );
         }else{
-            $query = "SELECT A.EMPLOYEE,(C.FIRSTNAME + ' ' + C.LASTNAME) AS CAJERO,A.TYPEID,B.ID AS TERMINAL,B.Name,E.descripcion,SUM(A.amount) AS total FROM dbInventario.dbo.tblGndSale AS A INNER JOIN dbInventario.dbo.tblTrm B ON ( B.Id = round(A.[CHECK]*0.0001,0)) INNER JOIN dbInventario.dbo.tblEmpleados  C ON (C.Id = A.EMPLOYEE) INNER JOIN dbInventario.dbo.tblParametrizacionContable  E ON (E.formaPagoId = A.TypeId) WHERE A.dob= :fecha AND A.TYPE=4 AND B.ID = :cafeteriaDosquebradas AND A.TYPEID NOT IN (1) GROUP BY A.EMPLOYEE,C.FIRSTNAME,C.LASTNAME,B.Name,E.descripcion,A.TYPEID,E.FORMAPAGOID,B.ID ORDER BY C.FIRSTNAME";
+            $query = "SELECT A.EMPLOYEE,(C.FIRSTNAME + ' ' + C.LASTNAME) AS CAJERO,A.TYPEID,B.ID AS TERMINAL,B.Name,E.descripcion,SUM(A.amount) AS total FROM dbInventario.dbo.tblGndSale AS A INNER JOIN dbInventario.dbo.tblTrm B ON ( B.Id = round(A.[CHECK]*0.0001,0)) INNER JOIN dbInventario.dbo.tblEmpleados  C ON (C.Id = A.EMPLOYEE) INNER JOIN dbInventario.dbo.tblParametrizacionContable  E ON (E.formaPagoId = A.TypeId) WHERE A.dob= :fecha AND A.TYPE=4 AND B.ID in(:cafeteriaDosquebradas, :cafeteriaDosquebradas2) AND A.TYPEID NOT IN (1) GROUP BY A.EMPLOYEE,C.FIRSTNAME,C.LASTNAME,B.Name,E.descripcion,A.TYPEID,E.FORMAPAGOID,B.ID ORDER BY C.FIRSTNAME";
             
             $params = array(
                 "fecha"=>$fecha,
-                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS
+                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS,
+                "cafeteriaDosquebradas2"=> Ambiente::CAFETERIADOSQUEBRADAS_II,
             );
         }
             $stmt = $em->prepare($query);
@@ -310,14 +314,16 @@ class CierreRepository extends \Doctrine\ORM\EntityRepository
             INNER JOIN dbInventario.dbo.tblParametrizacionContable B ON B.formapagoid = A.TYPEID
             WHERE A.DATE= :fecha
             AND A.TYPE=1
-            AND A.TYPEID <> 1 AND A.[CHECK]/10000 NOT IN (:cafeteriaCentro, :cafeteriaDosquebradas)
+            AND A.TYPEID <> 1 AND A.[CHECK]/10000 NOT IN (:cafeteriaCentro, :cafeteriaDosquebradas, :cafeteriaCentro2, :cafeteriaDosquebradas2)
             GROUP BY A.TYPEID,B.DESCRIPCION
             ORDER BY B.DESCRIPCION";
 
             $params = array(
                 "fecha"=>$fecha,
                 "cafeteriaCentro"=> Ambiente::CAFETERIACENTRO,
-                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS
+                "cafeteriaCentro2"=> Ambiente::CAFETERIACENTRO_II,
+                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS,
+                "cafeteriaDosquebradas2"=> Ambiente::CAFETERIADOSQUEBRADAS_II,
             );
         }elseif($centroAtencion == '2'){
             $query = "SELECT
@@ -326,13 +332,14 @@ class CierreRepository extends \Doctrine\ORM\EntityRepository
             INNER JOIN dbInventario.dbo.tblParametrizacionContable B ON B.formapagoid = A.TYPEID
             WHERE A.DATE= :fecha
             AND A.TYPE=1
-            AND A.TYPEID <> 1 AND A.[CHECK]/10000 = :cafeteriaCentro
+            AND A.TYPEID <> 1 AND A.[CHECK]/10000 in (:cafeteriaCentro, :cafeteriaCentro2)
             GROUP BY A.TYPEID,B.DESCRIPCION
             ORDER BY B.DESCRIPCION";
 
             $params = array(
                 "fecha"=>$fecha,
-                "cafeteriaCentro"=> Ambiente::CAFETERIACENTRO
+                "cafeteriaCentro"=> Ambiente::CAFETERIACENTRO,
+                "cafeteriaCentro2"=> Ambiente::CAFETERIACENTRO_II
             );
         }else{
             $query = "SELECT
@@ -341,13 +348,14 @@ class CierreRepository extends \Doctrine\ORM\EntityRepository
             INNER JOIN dbInventario.dbo.tblParametrizacionContable B ON B.formapagoid = A.TYPEID
             WHERE A.DATE= :fecha
             AND A.TYPE=1
-            AND A.TYPEID <> 1 AND A.[CHECK]/10000 = :cafeteriaDosquebradas
+            AND A.TYPEID <> 1 AND A.[CHECK]/10000 in (:cafeteriaDosquebradas, :cafeteriaDosquebradas2)
             GROUP BY A.TYPEID,B.DESCRIPCION
             ORDER BY B.DESCRIPCION";
 
             $params = array(
                 "fecha"=>$fecha,
-                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS
+                "cafeteriaDosquebradas"=> Ambiente::CAFETERIADOSQUEBRADAS,
+                "cafeteriaDosquebradas2"=> Ambiente::CAFETERIADOSQUEBRADAS_II
             );
         }
 
@@ -618,11 +626,11 @@ class CierreRepository extends \Doctrine\ORM\EntityRepository
     public function getEfectivoByCentroAtencionAndFecha($fecha,$centro)
     {   
         if($centro == 1){
-            $IN = " NOT IN (".Ambiente::RECEPCIONCONSOTA . "," . Ambiente::RECEPCIONMODULO .",". Ambiente::CAFETERIACENTRO. ",". Ambiente::CAFETERIADOSQUEBRADAS. ")";
+            $IN = " NOT IN (".Ambiente::RECEPCIONCONSOTA . "," . Ambiente::RECEPCIONMODULO .",". Ambiente::CAFETERIACENTRO. ",". Ambiente::CAFETERIADOSQUEBRADAS. ",". Ambiente::CAFETERIACENTRO_II . ",". Ambiente::CAFETERIADOSQUEBRADAS_II.")";
         }elseif($centro == 2){
-            $IN = " IN (". Ambiente::CAFETERIACENTRO .")";
+            $IN = " IN (". Ambiente::CAFETERIACENTRO . "," . Ambiente::CAFETERIACENTRO_II.")";
         }else{
-            $IN = " IN (". Ambiente::CAFETERIADOSQUEBRADAS .")";
+            $IN = " IN (". Ambiente::CAFETERIADOSQUEBRADAS . ",". Ambiente::CAFETERIADOSQUEBRADAS_II.")";
         }
         $em = $this->getEntityManager()->getConnection();
 
