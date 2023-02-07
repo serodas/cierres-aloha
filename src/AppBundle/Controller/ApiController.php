@@ -1241,7 +1241,7 @@ class ApiController extends FOSRestController implements ClassResourceInterface
                     "genero" => $voucher["CUGENERO"],
                     "fechaNacimiento" => $fechaNacimiento->format('Y-m-d'),
                     "cuenta" => $cuenta,
-                    "cajero" => $empleadoObject->getFirstName()." ".$empleadoObject->getLastName()
+                    "cajero" => $empleadoObject ? $empleadoObject->getFirstName()." ".$empleadoObject->getLastName() : ''
                 );
             }
         }
