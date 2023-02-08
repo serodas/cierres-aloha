@@ -183,13 +183,13 @@ class CierreRepository extends \Doctrine\ORM\EntityRepository
         $query = "SELECT B.name_user,B.documento,C.Name,
         SUM(A.amount)  AS real ,
         B.digitado,B.diferencia,
-		B.terminal_id AS terminal,
+		[CHECK]/10000 AS terminal,
 		A.EMPLOYEE, B.observacion
         FROM dbInventario.dbo.tblGndSale AS A
-        LEFT  JOIN dbInventario.dbo.cierres B ON (B.empleado_id = A.EMPLOYEE  AND B.fecha = A.dob AND B.terminal_id in (8,12)AND B.motivo_id=1)
+        LEFT  JOIN dbInventario.dbo.cierres B ON (B.empleado_id = A.EMPLOYEE  AND B.fecha = A.dob AND B.motivo_id=1)
         LEFT  JOIN dbInventario.dbo.tblTrm C ON ( C.Id = B.terminal_id )
-        WHERE  A.TYPE=:tipo AND A.TYPEID=:typeid  AND A.DOB=:fecha AND B.terminal_id in (8,12)
-        GROUP BY B.name_user,B.documento,C.Name,B.digitado,B.diferencia,B.terminal_id,A.EMPLOYEE,B.observacion
+        WHERE  A.TYPE=:tipo AND A.TYPEID=:typeid  AND A.DOB=:fecha AND A.[CHECK]/10000 IN (8,12)
+        GROUP BY B.name_user,B.documento,C.Name,B.digitado,B.diferencia,[CHECK]/10000,A.EMPLOYEE,B.observacion
         ORDER BY C.Name
         ";
 
