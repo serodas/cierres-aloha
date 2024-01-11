@@ -1,23 +1,31 @@
-Proyecto Base para desarrollos en Symfony
-===========
+<h1 align="center">
+  Report Generator for Aloha POS Data
+</h1>
 
-Descripción
----------------------
-Este proyecto puede ser usado como base de proyectos creados con el framework PHP Symfony en la versión 3.x. Cuenta con la autenticación del **Bundle de SEC** y además se integro la libreria Javascript AdminLTE para tener un area Administrativa disponible. 
+<p align="center">
+    This project is a report generator that connects to the SQL Server database of another application called Aloha POS from Soluciones Fourgen.
+    Aloha POS is a point-of-sale system that does not have support.
+    The report generator is developed in Symfony 3.4 and allows users to create and export customized reports based on the data from Aloha POS.
+  <br />
+  <br />
+</p>
 
-Objetivo
----------------------
-Poder mantener una versión renovada del framework con los requisitos fundamentales para realizar desarrollos en la empresa.
+# Preview
+![Preview](/reports_generator_aloha.gif)
 
-Aspectos a tener en cuenta
----------------------
+# Installation
+1. All the packages of the framework are installed and updated with [composer](https://getcomposer.org/)
+ ```bash
+     composer install
+ ```
 
-1. Todos los paquetes del framework se instalan y actualizan con [composer](https://getcomposer.org/).
+2. The Javascript components are updated with [Bower](https://bower.io/). and are hosted in the folder: **src/AppBundle/Resources/public/lib** nd can be published with the command  **php bin/console assets:install**
 
-2. Los componentes Javascript se actualizan con [Bower](https://bower.io/). y quedan alojados en la carpeta: **src/AppBundle/Resources/public/lib** y pueden ser publicados con el comando **php bin/console assets:install**
+# Stack PHP
+    * PHP 7.1
+    * Symfony 3.4
 
-3. Los paquetes Javascript disponibles en este proyecto base son los siguientes:
-
+# Stack Javascript
     * AdminLTE
     * font-awesome
     * Ionicons
@@ -31,5 +39,3 @@ Aspectos a tener en cuenta
     * x-editable
     * bootstrap-toggle
     * select2
-
-4. En lo posible tratar de usar los componentes Javascript disponibles y si es del caso y se deba usar otro, buscar uno que tenga buen soporte y que pueda ser instalado con Bower.
